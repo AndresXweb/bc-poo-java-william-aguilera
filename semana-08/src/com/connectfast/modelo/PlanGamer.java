@@ -1,10 +1,7 @@
 package com.connectfast.modelo;
 
-// 1. IMPORTS
 import com.connectfast.interfaces.Promocionable;
-// Importamos la excepción general
 import com.connectfast.excepciones.PlanInvalidoException;
-// Importamos la excepción ESPECÍFICA para este plan
 import com.connectfast.excepciones.VelocidadInsuficienteException;
 
 public class PlanGamer extends ServicePlan implements Promocionable {
@@ -12,20 +9,14 @@ public class PlanGamer extends ServicePlan implements Promocionable {
     private boolean anchoDedicado;
     private String servidoresGaming;
 
-    // 2. CONSTRUCTOR CON DOBLE "THROWS"
-    // Este constructor es el más estricto. Puede fallar por:
-    // A) PlanInvalidoException (datos generales mal)
-    // B) VelocidadInsuficienteException (regla de negocio gamer)
     public PlanGamer(String planCode, String planName, int speedMbps, double monthlyPrice,
                      int latenciaMaxima, boolean anchoDedicado) 
                      throws PlanInvalidoException, VelocidadInsuficienteException {
         
         super(planCode, planName, speedMbps, monthlyPrice, "Gamer");
 
-        // 3. REGLA DE NEGOCIO ESPECÍFICA (Validación extra)
-        // Validamos que la velocidad sea digna de un gamer
         if (speedMbps < 200) {
-            // Aquí usamos la excepción nueva
+
             throw new VelocidadInsuficienteException(
                 "La experiencia Gamer requiere minimo 200 Mbps para garantizar estabilidad."
             );
@@ -38,7 +29,6 @@ public class PlanGamer extends ServicePlan implements Promocionable {
         registrarCambio("Plan gamer configurado con latencia " + latenciaMaxima + "ms");
     }
 
-    // IMPLEMENTACION DE METODOS ABSTRACTOS
     @Override
     public String obtenerDescripcion() {
         return "Plan gaming " + planName + " con internet ultra rapido de " + speedMbps +
@@ -85,10 +75,9 @@ public class PlanGamer extends ServicePlan implements Promocionable {
         return precioTotal;
     }
 
-    // IMPLEMENTACION DE PROMOCIONABLE
     @Override
     public boolean esElegiblePromocion() {
-        return true; // Los gamers siempre quieren promos
+        return true; 
     }
 
     @Override
@@ -125,13 +114,10 @@ public class PlanGamer extends ServicePlan implements Promocionable {
         System.out.println("Costo instalacion: $" + calcularCostoInstalacion());
     }
 
-    // GETTERS Y SETTERS
     public int getLatenciaMaxima() {
         return latenciaMaxima;
     }
 
-    // 4. VALIDACIÓN CON EXCEPCIÓN
-    // Cambiamos IllegalArgumentException por PlanInvalidoException
     public void setLatenciaMaxima(int latenciaMaxima) throws PlanInvalidoException {
         if (latenciaMaxima < 1 || latenciaMaxima > 50) {
             throw new PlanInvalidoException("La latencia debe estar entre 1 y 50 ms para ser considerada Gamer");

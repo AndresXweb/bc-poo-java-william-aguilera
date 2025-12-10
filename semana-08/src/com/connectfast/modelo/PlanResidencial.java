@@ -1,9 +1,6 @@
 package com.connectfast.modelo;
 
-// 1. IMPORTAMOS LO NECESARIO
-// La interfaz ahora vive en otro paquete
 import com.connectfast.interfaces.Promocionable;
-// La excepción personalizada para validar
 import com.connectfast.excepciones.PlanInvalidoException;
 
 public class PlanResidencial extends ServicePlan implements Promocionable {
@@ -11,22 +8,17 @@ public class PlanResidencial extends ServicePlan implements Promocionable {
     private boolean incluyeTelefonia;
     private String tipoContenido;
 
-    // 2. CONSTRUCTOR CON "THROWS"
-    // Debe declarar 'throws PlanInvalidoException' por dos razones:
-    // A) Llama a super(), que ahora lanza esa excepción.
-    // B) Llama a setCanalesTV(), que ahora también la lanza.
     public PlanResidencial(String planCode, String planName, int speedMbps, double monthlyPrice,
                            int canalesTV, boolean incluyeTelefonia) throws PlanInvalidoException {
         super(planCode, planName, speedMbps, monthlyPrice, "Residencial");
         
-        setCanalesTV(canalesTV); // Validado
+        setCanalesTV(canalesTV); 
         this.incluyeTelefonia = incluyeTelefonia;
         this.tipoContenido = "Familiar";
         
         registrarCambio("Plan residencial configurado con " + canalesTV + " canales");
     }
 
-    // IMPLEMENTACION DE METODOS ABSTRACTOS
     @Override
     public String obtenerDescripcion() {
         return "Plan residencial " + planName + " con internet de " + speedMbps +
@@ -51,7 +43,7 @@ public class PlanResidencial extends ServicePlan implements Promocionable {
 
     @Override
     public double calcularCostoInstalacion() {
-        return 0; // Instalación gratuita
+        return 0;
     }
 
     @Override
@@ -66,7 +58,6 @@ public class PlanResidencial extends ServicePlan implements Promocionable {
         return precioTotal;
     }
 
-    // IMPLEMENTACION DE PROMOCIONABLE
     @Override
     public boolean esElegiblePromocion() {
         return monthlyPrice < 100000;
@@ -105,13 +96,10 @@ public class PlanResidencial extends ServicePlan implements Promocionable {
         System.out.println("Contenido: " + tipoContenido);
     }
 
-    // GETTERS Y SETTERS
     public int getCanalesTV() {
         return canalesTV;
     }
 
-    // 3. VALIDACIÓN ACTUALIZADA
-    // Cambiamos IllegalArgumentException por PlanInvalidoException
     public void setCanalesTV(int canalesTV) throws PlanInvalidoException {
         if (canalesTV < 0) {
             throw new PlanInvalidoException("El numero de canales no puede ser negativo");

@@ -7,12 +7,11 @@ public class Consola {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    // NUEVO MÉTODO 1: Para imprimir mensajes
+
     public static void mostrar(String mensaje) {
         System.out.println(mensaje);
     }
 
-    // NUEVO MÉTODO 2: Para hacer una pausa (similar a system("pause"))
     public static void esperarEnter() {
         System.out.print("Presione ENTER para continuar...");
         scanner.nextLine();
@@ -31,13 +30,12 @@ public class Consola {
                 scanner.nextLine();
                 return valor;
             } catch (InputMismatchException e) {
-                System.out.println("⚠️ Entrada inválida. Por favor, ingrese un número entero.");
+                System.out.println("Entrada inválida. Por favor, ingrese un número entero.");
                 scanner.nextLine();
             }
         }
     }
 
-    // Método renombrado en Main.java (leerDecimal es el correcto)
     public static double leerDecimal(String prompt) {
         while (true) {
             System.out.print(prompt);
@@ -46,7 +44,7 @@ public class Consola {
                 scanner.nextLine();
                 return valor;
             } catch (InputMismatchException e) {
-                System.out.println("⚠️ Entrada inválida. Por favor, ingrese un número decimal.");
+                System.out.println("Entrada inválida. Por favor, ingrese un número decimal.");
                 scanner.nextLine();
             }
         }

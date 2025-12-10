@@ -7,22 +7,19 @@ public class PlanEmpresarial extends ServicePlan {
     private int horasSoporte;
     private String nivelSLA;
 
-    // CONSTRUCTOR: Ahora declara que puede lanzar una excepción (throws PlanInvalidoException)
     public PlanEmpresarial(String planCode, String planName, int speedMbps, double monthlyPrice,
                            boolean ipFija, int horasSoporte, String nivelSLA) throws PlanInvalidoException {
-        // La llamada a super() valida los datos básicos (precio, nombre, etc.)
+ 
         super(planCode, planName, speedMbps, monthlyPrice, "Empresarial");
         
         this.ipFija = ipFija;
         
-        // Estos setters validan datos específicos de este plan
         setHorasSoporte(horasSoporte);
         setNivelSLA(nivelSLA);
         
         registrarCambio("Plan empresarial configurado con SLA " + this.nivelSLA);
     }
 
-    // IMPLEMENTACION DE METODOS ABSTRACTOS
     @Override
     public String obtenerDescripcion() {
         return "Plan empresarial " + planName + " con internet simetrico de " + speedMbps +
@@ -89,8 +86,6 @@ public class PlanEmpresarial extends ServicePlan {
         System.out.println("Costo instalacion: $" + calcularCostoInstalacion());
     }
 
-    // GETTERS Y SETTERS PROPIOS
-
     public boolean isIpFija() {
         return ipFija;
     }
@@ -104,7 +99,6 @@ public class PlanEmpresarial extends ServicePlan {
         return horasSoporte;
     }
 
-    // Validamos con PlanInvalidoException en lugar de IllegalArgumentException
     public void setHorasSoporte(int horasSoporte) throws PlanInvalidoException {
         if (horasSoporte < 0 || horasSoporte > 24) {
             throw new PlanInvalidoException("Horas de soporte debe estar entre 0 y 24");
@@ -117,8 +111,6 @@ public class PlanEmpresarial extends ServicePlan {
     }
 
     public void setNivelSLA(String nivelSLA) {
-        // Aquí mantenemos la lógica de seguridad: si es nulo, asignamos Básico.
-        // No lanzamos excepción porque lo corregimos automáticamente.
         if (nivelSLA == null || nivelSLA.isEmpty()) {
             this.nivelSLA = "Basico";
         } else {

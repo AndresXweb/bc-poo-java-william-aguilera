@@ -1,7 +1,6 @@
 package com.connectfast.modelo;
 
 import java.util.ArrayList;
-// Importamos las interfaces y excepciones que acabamos de crear
 import com.connectfast.interfaces.Facturable;
 import com.connectfast.interfaces.Auditable;
 import com.connectfast.excepciones.PlanInvalidoException;
@@ -14,10 +13,8 @@ public abstract class ServicePlan implements Facturable, Auditable {
     protected String tipoPlan;
     protected ArrayList<String> historialCambios;
 
-    // CONSTRUCTOR: Ahora avisa que puede fallar (throws PlanInvalidoException)
     public ServicePlan(String planCode, String planName, int speedMbps, double monthlyPrice, String tipoPlan) 
             throws PlanInvalidoException {
-        // Al llamar a los setters, validamos automáticamente
         setPlanCode(planCode);
         setPlanName(planName);
         setSpeedMbps(speedMbps);
@@ -27,12 +24,10 @@ public abstract class ServicePlan implements Facturable, Auditable {
         registrarCambio("Plan creado: " + planName);
     }
 
-    // METODOS ABSTRACTOS - Deben ser implementados por subclases
     public abstract String obtenerDescripcion();
     public abstract String obtenerBeneficios();
     public abstract double calcularCostoInstalacion();
 
-    // METODOS CONCRETOS
     public void mostrarInformacion() {
         System.out.println("Plan: " + planName);
         System.out.println("Codigo: " + planCode);
@@ -45,7 +40,6 @@ public abstract class ServicePlan implements Facturable, Auditable {
         return monthlyPrice * meses;
     }
 
-    // --- IMPLEMENTACION DE FACTURABLE ---
     @Override
     public String generarFactura() {
         StringBuilder factura = new StringBuilder();
@@ -70,7 +64,6 @@ public abstract class ServicePlan implements Facturable, Auditable {
         return "Plan: " + planName + " | Precio: $" + monthlyPrice + " | IVA: $" + calcularImpuestos();
     }
 
-    // --- IMPLEMENTACION DE AUDITABLE ---
     @Override
     public void registrarCambio(String cambio) {
         String registro = java.time.LocalDateTime.now() + " - " + cambio;
@@ -98,8 +91,6 @@ public abstract class ServicePlan implements Facturable, Auditable {
         }
         return historialCambios.get(historialCambios.size() - 1);
     }
-
-    // --- GETTERS Y SETTERS CON VALIDACIONES (Throws) ---
     
     public String getPlanCode() {
         return planCode;

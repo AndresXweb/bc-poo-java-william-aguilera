@@ -1,6 +1,6 @@
 # Semana 08: Colecciones y Generics - ConnectFast
 
-## 👤 Información del Estudiante
+## Información del Estudiante
 - **Nombre**: William Andres Aguilera Lasprilla
 - **Ficha**: 3228973A
 - **Dominio**: Empresa de Telecomunicaciones "ConnectFast"
@@ -11,7 +11,7 @@ Esta versión marca la refactorización completa del sistema para migrar de estr
 
 El gestor de planes ha sido optimizado para realizar búsquedas instantáneas (O(1)) por código de plan, además de incorporar métodos avanzados de filtrado y estadísticas para análisis de negocio.
 
-## 📦 Colecciones Utilizadas y Generics
+## Colecciones Utilizadas y Generics
 
 El componente clave refactorizado es `GestorPlanes.java`.
 
@@ -22,7 +22,7 @@ El componente clave refactorizado es `GestorPlanes.java`.
 
 **Generics:** Se usa la sintaxis `List<ServicePlan>` y `Map<String, ServicePlan>` en todas las declaraciones de colecciones para garantizar la seguridad de tipos (`type safety`) y evitar *warnings* de compilación.
 
-## 🔍 Operaciones Implementadas
+## Operaciones Implementadas
 
 La clase `GestorPlanes` ahora incluye las siguientes operaciones de negocio y estadísticas (Ejercicio 3):
 
@@ -38,7 +38,7 @@ La clase `GestorPlanes` ahora incluye las siguientes operaciones de negocio y es
 * **`obtenerPlanMasRapido()`**: Identifica el plan con la mayor velocidad (`speedMbps`).
 * **`contarPlanesPorTipo()`**: Retorna un `Map<String, Integer>` con el conteo de cuántos planes hay de cada tipo (Residencial, Gamer, Empresarial).
 
-## 🚀 Cómo Ejecutar
+## Cómo Ejecutar
 
 El sistema se ejecuta mediante un menú interactivo en la consola, que demuestra cada funcionalidad (Ejercicio 4).
 
@@ -52,11 +52,11 @@ La ejecución inicial demuestra la carga de datos exitosa:
 
 ```text
 C:\...\semana-08 com.connectfast.Main
-🚀 Iniciando Gestor de Planes ConnectFast...
-✅ PLAN REGISTRADO: Básico Hogar (Código: PLAN-100)
-✅ PLAN REGISTRADO: Gamer Pro (Código: PLAN-G500)
-✅ PLAN REGISTRADO: Emprendedor (Código: PLAN-E200)
-✅ PLAN REGISTRADO: Premium Plus (Código: PLAN-300)
+Iniciando Gestor de Planes ConnectFast...
+PLAN REGISTRADO: Básico Hogar (Código: PLAN-100)
+PLAN REGISTRADO: Gamer Pro (Código: PLAN-G500)
+PLAN REGISTRADO: Emprendedor (Código: PLAN-E200)
+PLAN REGISTRADO: Premium Plus (Código: PLAN-300)
 
 ========= GESTOR DE PLANES CONNECTFAST (S08) =========
 1. Agregar Plan
