@@ -99,7 +99,7 @@ public class Main {
             System.out.println("Error capturado: " + e.getMessage());
         }
         
-        System.out.println("\n========================================");
+
         System.out.println("RESUMEN");
 
         System.out.println("Total instalaciones: " + gestor.contarInstalaciones());

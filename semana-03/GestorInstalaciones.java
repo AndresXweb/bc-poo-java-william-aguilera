@@ -34,9 +34,9 @@ public class GestorInstalaciones {
     }
     
     public void mostrarTodasInstalaciones() {
-        System.out.println("\n========================================");
+        
         System.out.println("  INSTALACIONES DE " + nombreEmpresa.toUpperCase());
-        System.out.println("========================================\n");
+
         
         if (instalaciones.isEmpty()) {
             System.out.println("No hay instalaciones registradas");
